@@ -1,0 +1,53 @@
+@CHARSET "ISO-8859-1";
+
+/* For comments page, there is for the tips */
+.media-body {
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 5px;
+	color: black;
+}
+
+.school-title {
+	padding-bottom: 10px;
+	color: black;
+}
+
+/* This is where the icons, tips, and like/dislike buttons are contained */
+.media-content {
+	margin-top: 15px;
+	padding-bottom: 40px; border-bottom-style : solid;
+	border-color: black;
+	border-width: 1px;
+	border-bottom-style: solid;
+}
+
+/* Spacing and location of like button */
+#like-button {
+	background-image: url("images/thumbs-up.png");
+	background-size: 30px 30px;
+	background-repeat: no-repeat;
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	float: right;
+	margin-left: 10px;
+}
+
+/* Spacing and location of dislike button */
+#dislike-button {
+	background-image: url("images/thumbs-down.png");
+	background-size: 30px 30px;
+	background-repeat: no-repeat;
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	float: right;
+	margin-left: 10px;
+}
+
+/* Allows buttons to have shadow when cursor is on it */
+.btn:hover {
+	box-shadow: 1px 3px 4px 1px rgba(0, 0, 0, 0.24), 0 2px 3px 0
+		rgba(0, 0, 0, 0.19);
+}
