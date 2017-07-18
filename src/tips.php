@@ -1,7 +1,46 @@
+<?php
+
+require 'db_connection.php';
+
+/** Create connection by calling function from db_connection.php */
+$link = makeConnection();
+
+/** Query statement */
+$sql = "SELECT first_name, last_name, tip, date FROM tips";
+
+/** Get results from query (rows from the database) */
+$result = $link->query($sql);
+
+/** If there are results */
+if ($result->num_rows > 0) {
+	
+	/** Initialize arrays */
+	$name_array = array();
+	$tip_array = array();
+	$date_array = array();
+	
+	$num_rows = $result->num_rows;
+	
+	/** Loops through results */
+	while ($row = $result->fetch_assoc()) {
+		
+		/** Put data into corresponding array */
+		array_push($name_array, $row["first_name"] . " " . $row["last_name"]);
+		array_push($tip_array, $row["tip"]);
+		array_push($date_array, $row["date"]);
+		
+	}
+}
+
+/** Close mysql connection */
+closeConnection($link);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Student Tips</title>
+<link rel="title icon" href="images/icon.png">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="style.css" type="text/css" rel="stylesheet" />
@@ -15,7 +54,7 @@
 
 </head>
 <body>
-
+	
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -30,7 +69,7 @@
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#">Find My School</a></li>
+					<li><a href="FindMySchool.html">Find My School</a></li>
 					<li><a href="#">General Tips</a></li>
 					<li><a href="#">About</a></li>
 					<li><a href="#">FAQ</a></li>
@@ -62,7 +101,8 @@
 
 			<!-- MIDDLE BODY -->
 			<div class="col-sm-8 middle-info text-left">
-				<h1 class="school-title">Benedictine University - Computer Science</h1>
+				<h1 class="school-title">Benedictine University - Computer
+					Science</h1>
 				<div>
 					<!-- Left-aligned media object -->
 					<div class="media-content">
@@ -71,10 +111,12 @@
 								style="width: 60px">
 						</div>
 						<div class="media-body">
-							<h4 class="media-heading">Mark Hammond</h4>
-							<p>This will be where the tip goes. I am just adding text
-								here to test out how the text will wrap around. TEST TEST TEST
-								TEST TEST TEST TEST TEST</p>
+							<h4 class="media-heading">
+								<?php echo $name_array[0]; ?>
+							</h4>
+							<p id="tip1-tip">
+								<?php echo $tip_array[0]; ?>
+							</p>
 						</div>
 						<div class="media-buttons">
 							<button type="button" class="btn" id="dislike-button"></button>
@@ -88,10 +130,12 @@
 								style="width: 60px">
 						</div>
 						<div class="media-body">
-							<h4 class="media-heading">Steve Schultz</h4>
-							<p>This will be where the tip goes. I am just adding text
-								here to test out how the text will wrap around. TEST TEST TEST
-								TEST TEST TEST TEST TEST</p>
+							<h4 class="media-heading">
+								<?php echo $name_array[1]; ?>
+							</h4>
+							<p id="tip1-tip">
+								<?php echo $tip_array[1]; ?>
+							</p>
 						</div>
 						<div class="media-buttons">
 							<button type="button" class="btn" id="dislike-button"></button>
@@ -105,10 +149,12 @@
 								style="width: 60px">
 						</div>
 						<div class="media-body">
-							<h4 class="media-heading">Jacob Trumpis</h4>
-							<p>This will be where the tip goes. I am just adding text
-								here to test out how the text will wrap around. TEST TEST TEST
-								TEST TEST TEST TEST TEST</p>
+							<h4 class="media-heading">
+								<?php echo $name_array[2]; ?>
+							</h4>
+							<p id="tip1-tip">
+								<?php echo $tip_array[2]; ?>
+							</p>
 						</div>
 						<div class="media-buttons">
 							<button type="button" class="btn" id="dislike-button"></button>
@@ -123,10 +169,12 @@
 								style="width: 60px">
 						</div>
 						<div class="media-body">
-							<h4 class="media-heading">Corey Kuehl</h4>
-							<p>This will be where the tip goes. I am just adding text
-								here to test out how the text will wrap around. TEST TEST TEST
-								TEST TEST TEST TEST TEST</p>
+							<h4 class="media-heading">
+								<?php echo $name_array[3]; ?>
+							</h4>
+							<p id="tip1-tip">
+								<?php echo $tip_array[3]; ?>
+							</p>
 						</div>
 						<div class="media-buttons">
 							<button type="button" class="btn" id="dislike-button"></button>
@@ -136,15 +184,15 @@
 					<hr>
 				</div>
 			</div>
+		</div>
 
-			<!-- RIGHT SIDE NAVIGATION -->
-			<div class="col-sm-2 sidenav">
-				<div class="well">
-					<p>ADS</p>
-				</div>
-				<div class="well">
-					<p>ADS</p>
-				</div>
+		<!-- RIGHT SIDE NAVIGATION -->
+		<div class="col-sm-2 sidenav">
+			<div class="well">
+				<p>ADS</p>
+			</div>
+			<div class="well">
+				<p>ADS</p>
 			</div>
 		</div>
 	</div>

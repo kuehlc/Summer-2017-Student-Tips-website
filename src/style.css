@@ -7,6 +7,11 @@
 .middle-info {
 	color: black;
 	margin-bottom: 20px;
+	height: 80%;
+}
+
+.thanks-banner {
+	text-align: center;
 }
 
 /* Remove the navbar's default margin-bottom and rounded borders */
@@ -37,7 +42,10 @@
 footer {
 	background-color: #555;
 	color: white;
-	padding: 25px;
+	padding: 20px;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
 }
 
 /* On small screens, set height to 'auto' for sidenav and grid */

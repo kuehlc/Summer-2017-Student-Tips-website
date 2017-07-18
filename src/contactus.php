@@ -5,34 +5,31 @@ require 'db_connection.php';
 /** Create connection by calling function from db_connection.php */
 $link = makeConnection();
 
- /** Retrieve data from form POST */
- $first_name = $_POST['first-name'];
- $last_name = $_POST['last-name'];
- $email = $_POST['email'];
- $password1 = $_POST['pwd'];
- $password2 = $_POST['pwd2'];
- $school = $_POST['school'];
- $state = $_POST['state'];
- $major = $_POST['major'];
- $year = $_POST['year'];
- $gender = $_POST['gender'];
- 
- /** SQL insert statement */
- $sql = "INSERT INTO student_tips.users VALUES ('$first_name', '$last_name', '$email', '$password1', '$school', '$state', '$major', '$year', '$gender')"; 
- 
- /** Run and check to make sure insert was successful */
- if (!$link->query($sql)) {
- 	die('Error: ' . mysqli_error($link));
- }
- 
- /** Close mysql connection */
- closeConnection($link);
- ?>
+/** Retrieve data from form POST */
+$name = $_POST['full-name'];
+$email = $_POST['email'];
+$comment = $_POST['comment'];
+
+/** Get timestamp */
+$time_stamp = date("Y-m-d") . " " . date("H:i:s");
+
+/** SQL insert statement */
+$sql = "INSERT INTO student_tips.comment VALUES ('$name', '$email', '$comment','$time_stamp')";
+
+/** Run and check to make sure insert was successful */
+if (!$link->query($sql)) {
+	die('Error: ' . mysqli_error($link));
+}
+
+/** Close mysql connection */
+closeConnection($link);
+?>
  
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Student Tips</title>
+<link rel="title icon" href="images/icon.png">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="style.css" type="text/css" rel="stylesheet" />
@@ -93,7 +90,7 @@ $link = makeConnection();
 
 			<!-- MIDDLE BODY -->
 			<div class="col-sm-8 middle-info text-left thanks-banner">
-				<h1>Thanks for registering!</h1>
+				<h1>Thanks for the comment!</h1>
 			</div>
 
 			<!-- RIGHT SIDE NAVIGATION -->
